@@ -97,7 +97,7 @@ img {
 .current::after {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -4px;
   background-color: var(--color-hover);
   width: 100%;
   height: 4px;
