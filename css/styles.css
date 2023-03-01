@@ -7,6 +7,7 @@
   --color-footer-text: #e7e9fc;
   --color-hover: #404bbf;
   --color-lihte: #e5e5e5;
+  --color-background-modal: #fcfcfc;
 }
 
 body {
@@ -75,11 +76,14 @@ img {
 }
 
 /* навігація */
+
+.logo-header {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
 .nav {
   display: flex;
   align-items: center;
-  padding-top: 24px;
-  padding-bottom: 24px;
 }
 
 .nav-list {
@@ -90,10 +94,25 @@ img {
   padding-left: 0;
 }
 
+.current::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--color-hover);
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  content: "";
+}
+
 .nav-link {
+  position: relative;
+  padding-top: 24px;
+  padding-bottom: 24px;
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover,
@@ -124,6 +143,7 @@ img {
   color: var(--color-secondary);
   text-decoration: none;
   font-style: normal;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link-address:hover,
@@ -180,6 +200,7 @@ img {
   text-align: center;
   padding: 16px 32px;
   border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-servise:hover,
@@ -315,6 +336,7 @@ img {
   height: 100%;
   background-color: var(--color-secondary-inverted);
   fill: var(--color-primary-inverted);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-link:hover,
 .social-link:focus {
@@ -336,8 +358,6 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #8e8f99;
-  border-radius: 4px;
   width: 168px;
   height: 88px;
 }
@@ -349,18 +369,22 @@ img {
   gap: 24px;
 }
 
+.customers-list-icon {
+  width: 104px;
+  height: 56px;
+}
+
 .customers-link {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #8e8f99;
+  border-radius: 4px;
   width: 100%;
   height: 100%;
   fill: #8e8f99;
-}
-
-.customers-list-icon {
-  width: 104px;
-  height: 56px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-link:hover,
@@ -429,6 +453,7 @@ img {
   height: 100%;
   fill: var(--color-inverted);
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-link:hover,
@@ -480,6 +505,9 @@ img {
   font-size: 16px;
   line-height: 1.5;
   padding: 12px 24px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:hover,
@@ -499,8 +527,31 @@ img {
   padding-left: 0;
 }
 
+.portfolio-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px 0 32px;
+  background-color: var(--color-secondary-inverted);
+  color: var(--color-inverted);
+  transform: translateY(100%);
+  transition: transform 250ms;
+}
+
+.portfolio-card:hover .portfolio-description {
+  transform: translateY(0%);
+}
+
 .portfolio-list-item {
   flex-basis: calc((100% - 48px) / 3);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-list-item:hover {
@@ -528,4 +579,61 @@ img {
 .portfolio-text {
   color: var(--color-secondary);
   margin: 0;
+}
+
+/* модальне вікно */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opasity 500ms, visibility 500ms;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
+  position: relative;
+  max-width: 408px;
+  max-height: 576px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background-modal);
+  transform: scale(1);
+  transition: transform 500ms;
+}
+
+.backdrop.is-hidden .modal {
+  transform: scale(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-footer-text);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close:active {
+  fill: var(--color-primary-inverted);
+  background-color: var(--color-hover);
 }
