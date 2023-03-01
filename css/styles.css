@@ -593,7 +593,8 @@ img {
   height: 100%;
   padding: 10px 0;
   background-color: rgba(46, 47, 66, 0.4);
-  transition: opasity 500ms, visibility 500ms;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
@@ -610,7 +611,7 @@ img {
   height: 100%;
   background-color: var(--color-background-modal);
   transform: scale(1);
-  transition: transform 500ms;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden .modal {
@@ -627,13 +628,15 @@ img {
   border-radius: 50%;
   width: 24px;
   height: 24px;
+  cursor: pointer;
   background-color: var(--color-footer-text);
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal-close:active {
+.modal-close:active,
+.modal-close:focus {
   fill: var(--color-primary-inverted);
   background-color: var(--color-hover);
 }
